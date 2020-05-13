@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'react-apexcharts';
 import numeral from 'numeral';
 import moment from 'moment';
 
-import { chartCategories, chartSeries } from 'selectors/chart';
+import {
+	chartCategories,
+	chartSeries,
+	chartFilteredLabel
+} from 'selectors/chart';
 
 import { Container, ChartDateRef } from './styles';
 
 export default function ChartItem() {
 	const categories = useSelector(state => chartCategories(state));
 	const series = useSelector(state => chartSeries(state));
+	const teste = useSelector(state => chartFilteredLabel(state));
 
 	const [ options ] = useState({
 		chart: {
@@ -22,6 +27,11 @@ export default function ChartItem() {
 			zoom: {
 				enabled: false
 			}
+		},
+		noData: {
+			text: 'Sem dados para o período aplicado',
+			colors: '#8092a0',
+			fonSize: 14
 		},
 		dataLabels: {
 			enabled: false
@@ -58,10 +68,17 @@ export default function ChartItem() {
 		}
 	});
 
-	const [ seriesData ] = useState([{
+	const [ seriesData, setSeries ] = useState([{
 		name: 'Valor',
 		data: series
 	}]);
+
+	useEffect(() => {
+		setSeries([{
+			name: 'Valor',
+			data: series
+		}]);
+	}, [series]);
 
 	return (
 		<Container>
@@ -71,8 +88,14 @@ export default function ChartItem() {
 				type='area'
       />
 			<ChartDateRef>
-				<span>{moment(categories[0]).format('DD MMM YYYY')}</span>
-				<span>{moment(categories.slice(-1)[0]).format('DD MMM YYYY')}</span>
+				{
+					!!categories.length && (
+						<>
+							<span>{moment(categories[0]).format('DD MMM YYYY')}</span>
+							<span>{moment(categories.slice(-1)[0]).format('DD MMM YYYY')}</span>
+						</>
+					)
+				}
 			</ChartDateRef>
 		</Container>
 	);

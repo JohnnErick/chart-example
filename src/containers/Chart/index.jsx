@@ -6,6 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { fetchChartData } from 'actions/chart';
 import { initialLoad } from 'selectors/chart';
 import ChartComponent from 'components/Chart';
+import ChartFilter from 'components/ChartFilter';
 
 import { Container, ChartWrapper } from './styles';
 
@@ -30,6 +31,7 @@ export default function Chart() {
 						/>
 					) : (
 						<ChartWrapper>
+							<ChartFilter />
 							<ChartComponent />
 						</ChartWrapper>
 					)

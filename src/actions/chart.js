@@ -5,6 +5,11 @@ import { chartData } from 'settings/endpoints';
 
 export const fetchChartData = () => {
 	return dispatch => {
+		const savedFilterValue = parseInt(localStorage.getItem('filterValue'));
+
+		savedFilterValue &&
+			dispatch(setFilter({ selected: savedFilterValue }));
+
 		axios.get(chartData)
 			.then(({ data }) => {
 				dispatch(setChartData(data));
@@ -12,6 +17,18 @@ export const fetchChartData = () => {
 			});
 	};
 };
+
+export const filterSet = value => {
+	return dispatch => {
+		localStorage.setItem('filterValue', value);
+		dispatch(setFilter({ selected: parseInt(value) }));
+	}
+}
+
+export const setFilter = data => ({
+	type: CHART.CHART_FILTER_SET,
+	payload: data
+});
 
 export const setChartData = data => ({
 	type: CHART.CHART_SET,
