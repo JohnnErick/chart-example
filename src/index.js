@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Reset } from 'styled-reset';
 
+import GlobalStyle from 'utils/globalStyles';
 import store from 'settings/configureStore';
-import ExampleComponent from 'components/ExampleComponent';
+import Chart from 'containers/Chart';
 
 function App() {
   return (
 		<Provider store={store}>
 			<>
-				<Reset />
-				<ExampleComponent />
+				<GlobalStyle />
+				<Chart />
 			</>
 		</Provider>
 	);
