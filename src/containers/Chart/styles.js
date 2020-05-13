@@ -7,13 +7,14 @@ export const Container = styled.div`
 	width: 100vw;
 	height: 100vh;
 	padding: 30px;
-	background-color: #E2FDFF;
 `;
 
 export const ChartWrapper = styled.div`
+	position: absolute;
 	display: flex;
 	width: 90%;
-	max-width: 800px;
-	border: 1px solid #000;
-	border-radius: 3px;
+	max-width: 1000px;
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 10px 30px;
 `;

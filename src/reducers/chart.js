@@ -1,7 +1,7 @@
 import { CHART } from 'settings/constants';
 
 const initialState = {
-	chart: {},
+	chart: [],
 	requests: {
 		initialFetch: false
 	}
@@ -10,9 +10,9 @@ const initialState = {
 const reducer = {
 	[CHART.CHART_SET]: (stt, payload) => ({
 		...stt,
-			chart: {
+			chart: [
 				...payload
-			}
+			]
 	}),
 	[CHART.REQUEST_SET]: (stt, payload) => ({
 		...stt,
