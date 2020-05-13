@@ -1,0 +1,9 @@
+export const EXAMPLE = {
+	EXAMPLE_SET: 'EXAMPLE::SET'
+};
+
+export const CHART = {
+	CHART_SET: 'CHART::SET',
+	CHART_FILTER_SET: 'CHART_FILTER::SET',
+	REQUEST_SET: 'CHART_REQUEST::SET'
+};
